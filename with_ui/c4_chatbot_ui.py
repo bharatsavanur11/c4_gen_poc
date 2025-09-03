@@ -1585,8 +1585,9 @@ def render_examples():
         with st.expander(f"📋 {example['title']} - {example['description']}"):
             st.write(example['spec'])
             if st.button(f"Use Example {i+1}", key=f"example_{i}"):
-                st.session_state.spec_context = example['spec'].strip()
-                st.session_state.current_result = None
+                active_tab = get_active_tab()
+                active_tab.spec_context = example['spec'].strip()
+                active_tab.current_result = None
                 st.success(f"✅ Loaded {example['title']} example")
                 st.rerun()
 
